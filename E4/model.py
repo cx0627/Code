@@ -21,6 +21,25 @@ def pca(dataMat,n):
     reconMat=(lowDDataMat*n_eigVect.T)+meanVal  #重构数据
     return lowDDataMat,reconMat
 
+def producer():
+    
+    m = 50
+    N = 3
+    scale = np.empty(shape = (N), dtype = float)
+    scale[0] = 0.5
+    scale[1] = 20
+    scale[2] = 30
+    temp = np.ndarray(shape = (m, N), dtype = float)
+
+    for i in range(N):
+        temp[:, i] = np.random.normal(loc = 10, scale = scale[i], size = m)
+
+    invert = np.random.random(size = [N])
+
+    temp = np.dot(temp, np.dot(invert, invert.T))
+
+    return temp, m, N
+
 I = mpimg.imread('./wed.jpg')#读取图片
 image_shape = I.shape
 # n , m 表示数据的像素点的长宽
@@ -54,3 +73,21 @@ for i in range(m):
 sum = sum / n / m
 print(0)
 print(20*np.log10(n/np.sqrt(sum)))
+X, m_of_X, N = producer()
+
+
+# lowDDataMat , X_new = pca(X, 2)
+# print(X_new.shape)
+# fig = plt.figure()
+# ax = fig.gca(projection = '3d')
+
+# ax.scatter(X[:,0].T, X[:,1].T, X[:,2].T, c = 'r', marker = "o")
+# ax.view_init(elev = 0, azim = 0)
+# plt.show()
+
+# fig = plt.figure()
+# ax = fig.gca(projection = '3d')
+
+# ax.scatter(X_new[:, 0], X_new[:, 1], X_new[:, 2], c = 'g', marker = "o")
+# ax.view_init(elev = 0, azim = 0)
+# plt.show()
