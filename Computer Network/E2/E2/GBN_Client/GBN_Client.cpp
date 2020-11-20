@@ -1,3 +1,4 @@
+#include <ws2tcpip.h>
 #include<Windows.h>
 #include<stdlib.h>
 #include<time.h>
@@ -5,14 +6,15 @@
 #include<WS2tcpip.h>
 #include<fstream>
 #include <WinSock2.h>
-#include <ws2tcpip.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+// #include<arpa/inet.h>
 #include <unistd.h>
 using namespace std;
 
 #pragma comment(lib,"ws2_32.lib")
+#pragma comment(lib, "wsock32.lib")
 
 using namespace std;
 
@@ -169,8 +171,9 @@ int InitClientSocket() {
 		return 0;
 	}
 	clientSocket = socket(AF_INET, SOCK_DGRAM, 0);
-	// InetPton(AF_INET, TEXT(SERVER_IP), &serverAddr.sin_addr.S_un.S_addr);
-	serverAddr.sin_addr.S_un.S_addr = inet_pton(AF_INET, SERVER_IP, &serverAddr.sin_addr);
+	// inet_ntoa(AF_INET, TEXT(SERVER_IP), &serverAddr.sin_addr.S_un.S_addr);
+	// serverAddr.sin_addr.S_un.S_addr = inet_ntoa(AF_INET, SERVER_IP, &serverAddr.sin_addr);
+	serverAddr.sin_addr.S_un.S_addr = inet_ntoa(AF_INET, SERVER_IP);
 	serverAddr.sin_family = AF_INET;
 	serverAddr.sin_port = htons(SERVER_PORT);
 	return 1;
