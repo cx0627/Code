@@ -1,11 +1,16 @@
+#include<Windows.h>
 #include<stdlib.h>
 #include<time.h>
 #include<iostream>
 #include<WS2tcpip.h>
 #include<fstream>
 #include <WinSock2.h>
-#include<Windows.h>
- 
+#include <ws2tcpip.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+using namespace std;
 
 #pragma comment(lib,"ws2_32.lib")
 
