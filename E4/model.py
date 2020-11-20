@@ -40,54 +40,53 @@ def producer():
 
     return temp, m, N
 
-I = mpimg.imread('./wed.jpg')#读取图片
-image_shape = I.shape
-# n , m 表示数据的像素点的长宽
-m = image_shape[0]
-n = image_shape[1]
-# k 表示 像素点的颜色 黑白是1 彩色（RGB）一般是3 
-if len(image_shape) == 3:
-    k = image_shape[2]
-else:
-    k=1
-print(image_shape)
-print(m, n, k)
-print(np.array(I).shape)
-print(type(I[0,0,0]))
-x = np.ndarray(shape=(m, n, k) , dtype = float , buffer = I*1.0)
-print(n , m , k)
+# I = mpimg.imread('./wed.jpg')#读取图片
+# image_shape = I.shape
+# # n , m 表示数据的像素点的长宽
+# m = image_shape[0]
+# n = image_shape[1]
+# # k 表示 像素点的颜色 黑白是1 彩色（RGB）一般是3 
+# if len(image_shape) == 3:
+#     k = image_shape[2]
+# else:
+#     k=1
+# print(image_shape)
+# print(m, n, k)
+# print(np.array(I).shape)
+# print(type(I[0,0,0]))
+# x = np.ndarray(shape=(m, n, k) , dtype = float , buffer = I*1.0)
+# print(n , m , k)
 
-# 压缩后的维度
-d = 20
-rM = np.ndarray(shape=(m , n , k) , dtype = float)
-for i in range(k):
-    lowDDataMat,reconMat = pca (I[ :, :, i] , d)
-    rM[:, :, i] = np.real(reconMat)/255
-plt.imshow(rM)
-plt.show()
-# 计算信噪比
-sum = 0
-for i in range(m):
-    for j in range(n):
-        sum = sum + (np.abs(reconMat[i,j]-x[i,j])**2)
-sum = sum / n / m
-print(0)
-print(20*np.log10(n/np.sqrt(sum)))
+# # 压缩后的维度
+# d = 20
+# rM = np.ndarray(shape=(m , n , k) , dtype = float)
+# for i in range(k):
+#     lowDDataMat,reconMat = pca (I[ :, :, i] , d)
+#     rM[:, :, i] = np.real(reconMat)/255
+# plt.imshow(rM)
+# plt.show()
+# # 计算信噪比
+# sum = 0
+# for i in range(m):
+#     for j in range(n):
+#         sum = sum + (np.abs(reconMat[i,j]-x[i,j])**2)
+# sum = sum / n / m
+# print(0)
+# print(20*np.log10(n/np.sqrt(sum)))
+
 X, m_of_X, N = producer()
+lowDDataMat , X_new = pca(X, 2)
+print(X_new.shape)
+fig = plt.figure()
+ax = fig.gca(projection = '3d')
 
+ax.scatter(X[:,0].T, X[:,1].T, X[:,2].T, c = 'r', marker = "o")
+ax.view_init(elev = 0, azim = 0)
+plt.show()
 
-# lowDDataMat , X_new = pca(X, 2)
-# print(X_new.shape)
-# fig = plt.figure()
-# ax = fig.gca(projection = '3d')
+fig = plt.figure()
+ax = fig.gca(projection = '3d')
 
-# ax.scatter(X[:,0].T, X[:,1].T, X[:,2].T, c = 'r', marker = "o")
-# ax.view_init(elev = 0, azim = 0)
-# plt.show()
-
-# fig = plt.figure()
-# ax = fig.gca(projection = '3d')
-
-# ax.scatter(X_new[:, 0], X_new[:, 1], X_new[:, 2], c = 'g', marker = "o")
-# ax.view_init(elev = 0, azim = 0)
-# plt.show()
+ax.scatter(X_new[:, 0], X_new[:, 1], X_new[:, 2], c = 'g', marker = "o")
+ax.view_init(elev = 0, azim = 0)
+plt.show()
