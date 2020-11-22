@@ -1,6 +1,0 @@
-﻿  GBN_Server.cpp
-C:\Users\32046\Desktop\lab2\GBN_Server\GBN_Server\GBN_Server.cpp(84,127): warning C4474: sprintf_s: 格式字符串中传递的参数太多
-C:\Users\32046\Desktop\lab2\GBN_Server\GBN_Server\GBN_Server.cpp(84,127): message : 占位符和其参数预计 6 可变参数，但提供的却是 7 参数
-C:\Users\32046\Desktop\lab2\GBN_Server\GBN_Server\GBN_Server.cpp(129,35): warning C4244: “=”: 从“unsigned short”转换到“char”，可能丢失数据
-C:\Users\32046\Desktop\lab2\GBN_Server\GBN_Server\GBN_Server.cpp(130,35): warning C4244: “=”: 从“unsigned short”转换到“char”，可能丢失数据
-  GBN_Server.vcxproj -> C:\Users\32046\Desktop\lab2\GBN_Server\Debug\GBN_Server.exe
