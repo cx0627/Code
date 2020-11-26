@@ -11,7 +11,10 @@ int main()
     freopen("test.out","w",stdout);
 	setlocale(LC_ALL, "chs");//输出wchar_t类型的必要条件
 	wcin >> s;
+    cout << "yes" << endl;
     wcout << s[0] << endl;
- 
-return 0;
+    cout << wcslen(s) << endl;
+    cout << "yes" << endl;
+
+    return 0;
 }
