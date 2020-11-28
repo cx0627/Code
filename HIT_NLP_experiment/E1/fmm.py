@@ -37,7 +37,7 @@ f.close()
 f = open("199801_sent.txt", "r")
 ss = f.read().split('\n')
 fc = []
-for i in range(1):
+for i in range(len(ss)):
     fc.append([])
     start = 0
     flag = 0
@@ -48,15 +48,14 @@ for i in range(1):
         for k in range(min(max_len, len(ss[i]) - j), 0, -1):
             _find = find(ss[i][j:j+k])
             if _find != -1:
-                print(j,k)
                 if(cnt != ""):
-                    fc[i].append(cnt + '/uk1')
+                    fc[i].append(cnt + '/uk')
                     cnt = ""
                 start = j + k
                 for l in range(k):
                     cnt = cnt + ss[i][j+l]
                 cnt = cnt + '/' + dic[_find][1]
-                falg=1
+                flag = 1
                 fc[i].append(cnt)
                 cnt = ""
                 break
