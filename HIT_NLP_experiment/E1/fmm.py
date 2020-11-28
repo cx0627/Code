@@ -36,31 +36,40 @@ f.close()
 # print(type(dic[0][0]))
 f = open("199801_sent.txt", "r")
 ss = f.read().split('\n')
-col = []
-cnt = 0
-for i in range(len(ss)):
-    col.append([])
+fc = []
+for i in range(1):
+    fc.append([])
     start = 0
+    flag = 0
+    cnt = ""
     for j in range(len(ss[i])):
         if j < start :
             continue
-        flag = 0
         for k in range(min(max_len, len(ss[i]) - j), 0, -1):
-            if find(ss[i][j:j+k]) != -1:
-                cnt = cnt + 1;
+            _find = find(ss[i][j:j+k])
+            if _find != -1:
+                print(j,k)
+                if(cnt != ""):
+                    fc[i].append(cnt + '/uk1')
+                    cnt = ""
                 start = j + k
                 for l in range(k):
-                    col[i].append(cnt)
+                    cnt = cnt + ss[i][j+l]
+                cnt = cnt + '/' + dic[_find][1]
                 falg=1
+                fc[i].append(cnt)
+                cnt = ""
                 break
         if flag == 0:
-            col[i].append(-1)
+            cnt = cnt + ss[i][j]
+    if(cnt != ""):
+        fc[i].append(cnt + '/uk')
     if i % 100 == 0:
         print(i)
 f.close()
 f = open("test.out", "w")
-for i in range(len(ss)):
-    for j in range(len(ss[i])):
-        f.write(col[i][j])
+for i in range(len(fc)):
+    for j in range(len(fc[i])):
+        f.write(fc[i][j] + ' ')
     f.write("\n")
 f.close()
