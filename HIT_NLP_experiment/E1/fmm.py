@@ -45,6 +45,7 @@ for i in range(len(ss)):
     for j in range(len(ss[i])):
         if j < start :
             continue
+        flag = 0
         for k in range(min(max_len, len(ss[i]) - j), 0, -1):
             _find = find(ss[i][j:j+k])
             if _find != -1:
