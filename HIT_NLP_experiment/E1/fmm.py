@@ -24,7 +24,7 @@ def find(x):
         return r
     return -1
 
-f = open("seg_FMM.txt", "r")
+f = open("dic.txt", "r")
 dic_data = f.read().split()
 dic = []
 dic_len = int(len(dic_data) / 2)
@@ -66,7 +66,7 @@ for i in range(len(ss)):
     if i % 100 == 0:
         print(i)
 f.close()
-f = open("test.out", "w")
+f = open("seg_FMM.txt", "w")
 for i in range(len(fc)):
     for j in range(len(fc[i])):
         f.write(fc[i][j] + ' ')
