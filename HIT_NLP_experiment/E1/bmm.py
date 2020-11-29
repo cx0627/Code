@@ -1,5 +1,5 @@
-#Forward maximum matching
-#正向最大匹配
+#Backward maximum matching
+#反向最大匹配
 
 def find(x):
     # 顺序遍历 事实证明并不可信 时间开销过大 没有一丁点实际意义
@@ -24,7 +24,7 @@ def find(x):
         return r
     return -1
 
-f = open("seg_FMM.txt", "r")
+f = open("dic.txt", "r")
 dic_data = f.read().split()
 dic = []
 dic_len = int(len(dic_data) / 2)
@@ -39,36 +39,37 @@ ss = f.read().split('\n')
 fc = []
 for i in range(len(ss)):
     fc.append([])
-    start = 0
+    start = len(ss[i])
     flag = 0
     cnt = ""
-    for j in range(len(ss[i])):
-        if j < start :
+    for j in range(len(ss[i])-1,-1,-1):
+        if j > start :
             continue
-        for k in range(min(max_len, len(ss[i]) - j), 0, -1):
-            _find = find(ss[i][j:j+k])
+        flag = 0
+        for k in range(min(max_len, j), 0, -1):
+            _find = find(ss[i][j-k+1:j+1])
             if _find != -1:
                 if(cnt != ""):
                     fc[i].append(cnt + '/uk')
                     cnt = ""
-                start = j + k
-                for l in range(k):
-                    cnt = cnt + ss[i][j+l]
+                start = j - k
+                for l in range(k-1,-1,-1):
+                    cnt = cnt + ss[i][j-l]
                 cnt = cnt + '/' + dic[_find][1]
                 flag = 1
                 fc[i].append(cnt)
                 cnt = ""
                 break
         if flag == 0:
-            cnt = cnt + ss[i][j]
+            cnt = ss[i][j] + cnt
     if(cnt != ""):
         fc[i].append(cnt + '/uk')
     if i % 100 == 0:
         print(i)
 f.close()
-f = open("test.out", "w")
+f = open("seg_BMM.txt", "w")
 for i in range(len(fc)):
-    for j in range(len(fc[i])):
+    for j in range(len(fc[i])-1,-1,-1):
         f.write(fc[i][j] + ' ')
     f.write("\n")
 f.close()
