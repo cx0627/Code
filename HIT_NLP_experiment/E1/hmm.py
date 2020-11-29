@@ -137,7 +137,7 @@ def count(dic , char):
 
 dic,char = readin()
 a,b,pi = count(dic,char)
-f = open("199801_sent.txt","r")
+f = open("test_sent.txt","r")
 ss = f.read().split('\n')
 f.close()
 f=open("seg_LM.txt","w")
