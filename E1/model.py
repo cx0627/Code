@@ -7,7 +7,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0" #指定使用0号cpu
 #超参数
 left_boundary = 0 #左边界
 right_boundary = 1 #右边界
-data_size = 10 #训练集个数
+data_size = 10000 #训练集个数
 data_scale = 0.15 #训练集噪声
 test_size = 100 #测试集个数
 test_scale = 0 #测试集噪声
@@ -15,7 +15,7 @@ data_seed = 42 #随机种子
 M = 5 #高阶函数维度
 lambd = 0.001 #正则系数
 alpha = 0.0005 #学习率
-times = 50000 #迭代次数
+times = 50000000 #迭代次数
 
 #等距离生成数据
 def uniform(left,right,size):
@@ -113,9 +113,9 @@ x_test,y_test = create_data(test_scale,test_size)
 #解析解的w
 # w = least_square (vandermonde (x_train , M), y_train)
 #解析解带正则项的w
-w = least_square_regular (vandermonde (x_train , M), y_train)
+# w = least_square_regular (vandermonde (x_train , M), y_train)
 #梯度下降的w
-# w = gradient_descent (vandermonde (x_train , M) , y_train , random_initialization(M , 1))
+w = gradient_descent (vandermonde (x_train , M) , y_train , random_initialization(M , 1))
 #共轭梯度的w
 # w = conjugate_gradient(vandermonde (x_train , M) , y_train)
 print(w)
