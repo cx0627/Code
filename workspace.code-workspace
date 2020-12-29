@@ -2,10 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"name": "lstm-crf-pytorch",
-			"path": "HIT_NLP_experiment\\lstm-crf-pytorch\\lstm-crf-pytorch"
 		}
 	],
 	"settings": {
